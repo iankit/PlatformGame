@@ -166,9 +166,9 @@ DOMDisplay.prototype.clear = function(){
 
 Level.prototype.obstacleAt = function(pos, size){
   var xStart = Math.floor(pos.x);
-  var xEnd = Math.celi(pos.x + size.x);
+  var xEnd = Math.ceil(pos.x + size.x);
   var yStart = Math.floor(pos.y);
-  var yEnd = Math.celi(pos.y + size.y);
+  var yEnd = Math.ceil(pos.y + size.y);
 
   if(xStart < 0 || xEnd > this.width || yStart < 0)
     return "wall";
