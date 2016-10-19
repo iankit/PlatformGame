@@ -353,24 +353,6 @@ function runGame(plans, Display) {
   }
   startLevel(0);
 }
-    function startLevel(n, lives) {
-      runLevel(new Level(plans[n]), Display, function(status) {
-        if (status == "lost"){
-          if(lives > 0) {
-            startLevel(n, lives-1);
-          }else{
-            console.log("Game Over");
-            startLevel(n, 3);
-          }
-        }else if (n < plans.length - 1)
-          startLevel(n + 1);
-        else
-          console.log("You win!");
-      });
-    }
-    startLevel(0);
-}
-
 
 function CanvasDisplay(parent, level) {
   this.canvas = document.createElement("canvas");
