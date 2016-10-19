@@ -341,58 +341,18 @@ function runLevel(level, Display, andThen) {
 }
 
 function runGame(plans, Display) {
-    function startLevel(n, lives) {
-      runLevel(new Level(plans[n]), Display, function(status) {
-        if (status == "lost"){
-          if(lives > 0) {
-            startLevel(n, lives-1);
-          }else{
-            console.log("Game Over");
-            startLevel(n, 3);
-          }
-        }else if (n < plans.length - 1)
-          startLevel(n + 1);
-        else
-          console.log("You win!");
-      });
-    }
-    startLevel(0);
+  function startLevel(n) {
+    runLevel(new Level(plans[n]), Display, function(status) {
+      if (status == "lost")
+        startLevel(n);
+      else if (n < plans.length - 1)
+        startLevel(n + 1);
+      else
+        console.log("You win!");
+    });
+  }
+  startLevel(0);
 }
-
-
-// Using Canvas on place of DOM display
-
-// function CanvasDisplay(parent, level){
-//   this.canvas = document.createElement("canvas");
-//   this.canvas.width = Math.min(600, level.width * scale);
-//   this.canvas.height = Math.min(450, level.height * scale);
-//   parent.appendChild(this.canvas);
-//   this.cx = this.canvas.getContext("2d");
-
-//   this.level = level;
-//   this.animationTime = 0;
-//   this.flipPlayer = false;
-  
-//   this.viewports = {
-//     left : 0,
-//     top: 0,
-//     width: this.canvas.width / scale,
-//     height: this.canvas.height / scale
-//   };
-//   this.drawFrame(0);
-// }
-// CanvasDisplay.prototype.clear = function(){
-//   this.canvas.parentNode.removeChild(this.canvas);
-// };
-
-// CanvasDisplay.prototype.drawFrame = function(step) {
-//   this.animationTime += step;
-
-//   this.updateViewport();
-//   this.clearDisplay();
-//   this.drawBackground();
-//   this.drawActors();
-// };
 
 function CanvasDisplay(parent, level) {
   this.canvas = document.createElement("canvas");
