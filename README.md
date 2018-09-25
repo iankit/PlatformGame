@@ -1,3 +1,3 @@
 # PlatformGame
 
-Play this game live @ http://iankit.github.io/PlatformGame
+Play this game live @ http://nnnkit.github.io/PlatformGame
